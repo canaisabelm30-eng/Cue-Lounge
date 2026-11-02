@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#09130f">
+<title>Cue Lounge | Play. Relax. Repeat.</title>
+<style>
+:root{--bg:#09130f;--panel:#10271d;--panel2:#173b2b;--gold:#d5b16d;--gold2:#f5dfaa;--cream:#f7efdf;--muted:#b8c5b9;--line:#d5b16d55;--red:#9b4037;--shadow:0 22px 60px #0007}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--cream);font-family:Georgia,"Times New Roman",serif}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}.hidden{display:none!important}.eyebrow{font:11px/1.4 Arial,sans-serif;text-transform:uppercase;letter-spacing:.24em;color:var(--gold)}.muted{color:var(--muted)}.small{font:12px/1.6 Arial,sans-serif;color:var(--muted)}.btn{border:1px solid var(--gold2);border-radius:4px;padding:14px 20px;background:linear-gradient(#f0d28b,#c39a4e);color:#152318;font:700 11px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 4px 0 #6f5124;transition:.2s}.btn:hover{filter:brightness(1.1);transform:translateY(-2px)}.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #6f5124}.btn.outline{background:transparent;color:var(--cream);box-shadow:none;border-color:#b5c7b5}.btn.outline:hover{border-color:var(--gold);color:var(--gold2)}.btn.full{width:100%}
+/* Intro: full-screen cinematic table */
+#intro{min-height:100svh;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,#244e37 0,#10271c 38%,#060b08 100%);isolation:isolate}
+#intro:before{content:"";position:absolute;inset:-20%;background:repeating-linear-gradient(115deg,transparent 0 110px,#d5b16d06 111px 112px);transform:rotate(-8deg);z-index:-1}
+.intro-top{position:absolute;top:28px;left:clamp(20px,5vw,70px);right:clamp(20px,5vw,70px);display:flex;justify-content:space-between;align-items:center;z-index:4}.brand{font-size:clamp(20px,3vw,28px);letter-spacing:.18em;font-weight:bold}.brand span{color:var(--gold)}.intro-top .small{letter-spacing:.12em;text-transform:uppercase}
+.intro-content{width:min(1120px,92vw);display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:30px;padding:100px 0 60px;z-index:2}.intro-copy{animation:none}.intro-copy h1{font-size:clamp(42px,7vw,88px);font-weight:normal;line-height:.9;letter-spacing:-.035em;margin:20px 0}.intro-copy h1 em{font-weight:normal;color:var(--gold);display:block}.intro-copy p{font:15px/1.8 Arial,sans-serif;color:#d1ddcf;max-width:410px}.intro-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.intro-art{position:relative;min-height:390px;display:grid;place-items:center;perspective:900px;animation:none}.room-glow{position:absolute;width:80%;height:70%;background:#4b8a5a2b;filter:blur(48px);border-radius:50%}.pool-table{position:relative;width:min(100%,570px);aspect-ratio:1.35/1;background:linear-gradient(135deg,#b18a4e,#4c3119 9%,#8d6633 13%,#59391b 18%,#17452d 19%,#0c2a1b 82%,#c19a56 84%,#54351c 91%,#1b120b);border:5px solid #c49b56;border-radius:13px;transform:rotateX(14deg) rotateZ(-7deg);box-shadow:0 24px 0 #352416,0 42px 42px #000b,inset 0 0 0 5px #51351a}
+.pool-table:before{content:"";position:absolute;inset:17px;border:2px solid #8b6c3b;background:radial-gradient(ellipse at 50% 48%,#236343,#10412a 55%,#092518);box-shadow:inset 0 0 35px #0009}
+.pocket{position:absolute;z-index:3;width:25px;height:25px;background:#020604;border:3px solid #6c4b25;border-radius:50%;box-shadow:inset 0 3px 5px #000}.pocket.a{top:5px;left:5px}.pocket.b{top:5px;right:5px}.pocket.c{bottom:5px;left:5px}.pocket.d{bottom:5px;right:5px}.pocket.e{top:50%;left:3px;transform:translateY(-50%)}.pocket.f{top:50%;right:3px;transform:translateY(-50%)}
+.ball{position:absolute;z-index:5;width:clamp(23px,3.5vw,40px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;color:#151515;font:700 10px Arial,sans-serif;background:radial-gradient(circle at 28% 23%,white 0 6%,#f8e7ba 12%,#d4aa48 40%,#6d4b18 100%);box-shadow:inset -5px -6px 7px #0007,inset 3px 3px 5px #fff9,0 5px 8px #0008}.ball.blue{background:radial-gradient(circle at 28% 23%,#fff 0 5%,#7da6f7 12%,#2854b8 42%,#071744 100%);color:#fff}.ball.black{background:radial-gradient(circle at 28% 23%,#777 0 4%,#292929 25%,#050505 75%);color:#fff}.ball.red{background:radial-gradient(circle at 28% 23%,#fff 0 5%,#ffb3a2 12%,#cf382c 42%,#64110c 100%);color:#fff}.ball.white{background:radial-gradient(circle at 28% 23%,#fff,#e5e6df 55%,#92958d);color:#111}.ball span{background:#fff;border-radius:50%;width:12px;height:12px;display:grid;place-items:center}.cue{position:absolute;z-index:6;width:67%;height:5px;left:9%;top:65%;border-radius:5px;background:linear-gradient(90deg,#c5a16a 0 5%,#f1ddb1 6% 9%,#a9763c 10% 90%,#d7b36e 92%);transform:rotate(-22deg);transform-origin:88% 50%;box-shadow:0 4px 5px #0009;animation:none}.ball.cueball{left:25%;top:60%;animation:none}.ball.target{left:53%;top:39%;animation:none}.ball.third{left:66%;top:53%;animation:none}.shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 30%,#fff0 40%,#fff1 50%,transparent 62%);animation:none}
+.intro-bottom{position:absolute;bottom:24px;left:0;right:0;text-align:center;font:10px Arial,sans-serif;letter-spacing:.28em;color:#c8b17b99;text-transform:uppercase}
+@keyframes cueShot{0%,25%{transform:rotate(-22deg) translateX(0)}34%{transform:rotate(-22deg) translateX(-38px)}46%,100%{transform:rotate(-22deg) translateX(40px);opacity:.15}}@keyframes cueBall{0%,30%{transform:translate(0,0)}48%{transform:translate(95px,-60px)}64%,100%{transform:translate(175px,-6px)}}@keyframes targetBall{0%,40%{transform:translate(0,0)}57%{transform:translate(100px,-42px)}76%,100%{transform:translate(150px,-55px)}}@keyframes thirdBall{0%,55%{transform:translate(0,0)}70%,100%{transform:translate(40px,65px)}}@keyframes tableShine{0%,70%,100%{opacity:0}80%{opacity:1}}@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+/* Auth gate */
+#auth{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;background:#0a1710}.auth-visual{position:relative;min-height:100%;overflow:hidden;background:linear-gradient(0deg,#08130f 0%,#08130f40 65%),url('https://images.unsplash.com/photo-1607979779373-2f2e4c9a4f35?auto=format&fit=crop&w=1400&q=85') center/cover,#173b2b;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,5vw,70px)}.auth-visual:after{content:"";position:absolute;inset:0;border:1px solid #d5b16d55;pointer-events:none}.auth-visual h2{font-size:clamp(38px,5vw,68px);line-height:.95;font-weight:normal;max-width:520px;margin:0}.auth-visual h2 em{color:var(--gold);font-weight:normal}.auth-visual p{max-width:400px;font:14px/1.8 Arial,sans-serif;color:#e1e7dc}.auth-brand{font-size:23px;letter-spacing:.17em;font-weight:bold}.auth-box{width:min(470px,88%);margin:auto;padding:45px 0}.auth-box h2{font-size:38px;font-weight:normal;margin:12px 0}.auth-tabs{display:flex;border-bottom:1px solid var(--line);gap:24px;margin:28px 0}.auth-tabs button{background:none;border:0;color:var(--muted);padding:0 0 13px;font:12px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;border-bottom:2px solid transparent}.auth-tabs button.active{color:var(--gold2);border-color:var(--gold)}.field{margin:15px 0}.field label{display:block;font:10px Arial,sans-serif;color:var(--gold);letter-spacing:.15em;margin-bottom:8px;text-transform:uppercase}.field input,.field select{width:100%;padding:14px;background:#07110c;border:1px solid #526b57;border-radius:3px;color:var(--cream);outline:none}.field input:focus,.field select:focus{border-color:var(--gold)}.auth-note{font:11px/1.6 Arial,sans-serif;color:#9dad9e;margin-top:18px}.text-button{background:none;border:0;color:var(--gold2);text-decoration:underline;padding:0}.auth-error{color:#f1a59b;font:12px Arial,sans-serif;min-height:18px;margin:10px 0}
+#site{background:radial-gradient(ellipse at 50% -10%,#1b3c2a 0,#09130f 55%)}.topbar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:15px clamp(16px,4vw,55px);background:#07110feF;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}.tagline{font:10px Arial,sans-serif;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-top:5px}.nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}.nav button{background:none;border:1px solid transparent;color:var(--cream);padding:10px 12px;border-radius:3px;font:11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}.nav button:hover,.nav button.active{border-color:var(--line);color:var(--gold2);background:#fff1}.nav .nav-cta{background:var(--gold);color:#142217}.container{width:min(1160px,92vw);margin:auto}.page{display:none;min-height:70vh}.page.active{display:block;animation:fadeUp .45s both}.hero{min-height:530px;display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:30px;padding:60px 0}.hero h1{font-size:clamp(45px,7vw,82px);line-height:.93;font-weight:normal;margin:18px 0}.hero h1 em{display:block;color:var(--gold);font-weight:normal}.hero p{max-width:500px;font:15px/1.8 Arial,sans-serif;color:#d0ddcf}.hero-art{min-height:330px;position:relative;display:grid;place-items:center}.hero-art .pool-table{width:100%;max-width:530px}.hero-art .ball{animation:float 4s ease-in-out infinite}.hero-art .ball:nth-child(2){animation-delay:-1s}.hero-art .ball:nth-child(3){animation-delay:-2s}@keyframes float{50%{translate:0 -12px}}.section{padding:40px 0 55px}.section-title{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:22px}.section-title h2{font-size:clamp(28px,4vw,42px);font-weight:normal;margin:8px 0}.section-title p{font:13px/1.7 Arial,sans-serif;color:var(--muted);max-width:500px;margin:0}.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:12px 0 24px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{border:1px solid var(--line);padding:24px;background:linear-gradient(145deg,#173a2a,#0d1d14);min-height:165px}.feature .num{color:var(--gold);font:11px Arial,sans-serif;letter-spacing:.15em}.feature h3{font-size:21px;font-weight:normal;margin:15px 0 8px}.feature p{font:13px/1.7 Arial,sans-serif;color:var(--muted);margin:0}
+.table-strip{display:flex;gap:16px;overflow-x:auto;padding:8px 3px 22px;scroll-snap-type:x mandatory;scrollbar-color:var(--gold) #17261c;scrollbar-width:thin}.table-card{flex:0 0 250px;scroll-snap-align:start;overflow:hidden;border:1px solid var(--line);background:#102319;transition:transform .2s,border-color .2s;cursor:pointer}.table-card:hover{transform:translateY(-4px);border-color:var(--gold)}.table-card.selected{border:2px solid var(--gold2);box-shadow:0 0 0 2px #d5b16d25}.table-photo{height:155px;background-size:cover;background-position:center;position:relative}.table-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#08130fbb,transparent 65%)}.table-card-body{padding:16px}.table-card-body .name{font-size:22px}.table-card-body .meta{font:11px Arial,sans-serif;color:var(--muted);margin-top:7px;display:flex;justify-content:space-between}.table-card-body .pick{font:10px Arial,sans-serif;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-top:15px}
+.panel{border:1px solid var(--line);background:linear-gradient(145deg,#132e21,#0b1b13);padding:clamp(18px,3vw,32px);margin:18px 0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}.notice{border-left:3px solid var(--gold);background:#fff1;padding:14px 16px;font:12px/1.7 Arial,sans-serif;color:var(--muted);margin:18px 0}.payment-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.payment-option{border:1px solid #526b57;background:#09150e;color:var(--cream);padding:18px 12px;text-align:left;border-radius:3px;min-height:110px}.payment-option strong{display:block;font:700 14px Arial,sans-serif;margin-bottom:9px}.payment-option span{font:11px/1.5 Arial,sans-serif;color:var(--muted)}.payment-option.active{border:2px solid var(--gold);background:#d5b16d12}.paymark{display:inline-grid;place-items:center;border:1px solid var(--line);padding:5px 7px;margin-bottom:10px;font:700 10px Arial,sans-serif;letter-spacing:.04em;color:var(--gold2)}.summary{display:grid;grid-template-columns:1fr auto;gap:12px;font:13px Arial,sans-serif;padding:10px 0;border-bottom:1px solid #ffffff12}.summary strong{color:var(--gold2);font-weight:normal;text-align:right}.venue-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.venue-photo{min-height:370px;background:linear-gradient(0deg,#08130f66,#08130f05),url('https://images.unsplash.com/photo-1607979779373-2f2e4c9a4f35?auto=format&fit=crop&w=1400&q=85') center/cover,#173b2b;border:1px solid var(--line)}.detail-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.detail{padding:17px;border:1px solid var(--line);background:#ffffff05}.detail strong{display:block;color:var(--gold2);font-size:17px;font-weight:normal;margin-bottom:7px}.detail span{font:12px/1.6 Arial,sans-serif;color:var(--muted)}.footer{border-top:1px solid var(--line);padding:28px 4vw;text-align:center;color:#91a293;font:10px Arial,sans-serif;letter-spacing:.15em;line-height:2}.status{min-height:20px;font:12px/1.6 Arial,sans-serif;color:#9fd1a9;margin-top:12px}.status.error{color:#f0a39a}.modal-backdrop{position:fixed;inset:0;background:#000b;z-index:40;display:grid;place-items:center;padding:20px}.modal{width:min(480px,100%);background:#10271d;border:1px solid var(--gold);padding:28px;box-shadow:var(--shadow)}.modal h2{font-weight:normal;font-size:30px}.modal .close{float:right;background:none;border:1px solid var(--line);color:var(--cream);padding:7px 10px}
+@media(max-width:800px){.intro-content{grid-template-columns:1fr;padding-top:110px;gap:0}.intro-art{min-height:300px;grid-row:1}.intro-copy{grid-row:2}.pool-table{width:90%}.cue{height:4px}.intro-copy h1{font-size:clamp(44px,12vw,68px)}#auth{grid-template-columns:1fr}.auth-visual{min-height:280px;padding:28px}.auth-visual h2{font-size:43px}.auth-visual .small.bottom-copy{display:none}.auth-box{padding:36px 0}.hero{grid-template-columns:1fr;padding:45px 0}.hero-art{min-height:260px}.features{grid-template-columns:1fr}.venue-grid{grid-template-columns:1fr}.venue-photo{min-height:270px}.nav button{padding:9px 7px;font-size:10px}.payment-options{grid-template-columns:1fr}.payment-option{min-height:unset}.section-title{align-items:start;flex-direction:column}}
+@media(max-width:460px){.topbar{align-items:flex-start;flex-direction:column}.nav{width:100%;justify-content:space-between}.brand{font-size:21px}.form-grid{grid-template-columns:1fr}.detail-list{grid-template-columns:1fr 1fr}.table-card{flex-basis:220px}.intro-top .small{display:none}.intro-art{min-height:245px}.intro-bottom{font-size:8px;letter-spacing:.16em}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<section id="intro" aria-label="Cue Lounge welcome">
+ <div class="intro-top"><div><div class="brand">CUE <span>LOUNGE</span></div><div class="tagline">Play Relax Repeat</div></div><div class="small">A relaxed place to gather</div></div>
+ <div class="intro-content">
+  <div class="intro-copy"><div class="eyebrow">Billiards · Drinks · Good company</div><h1>Play Relax<br><em>Repeat.</em></h1><p>A welcoming billiards lounge with classic tables, warm lighting, and room to unwind. Meet friends, enjoy a casual game, and stay awhile.</p><div class="intro-actions"><button class="btn" onclick="showAuth('signup')">Enter the lounge ↗</button><button class="btn outline" onclick="showAuth('login')">I have an account</button></div></div>
+  <div class="intro-art" aria-label="Static billiards table with billiard balls"><div class="room-glow"></div><div class="pool-table"><i class="pocket a"></i><i class="pocket b"></i><i class="pocket c"></i><i class="pocket d"></i><i class="pocket e"></i><i class="pocket f"></i><div class="ball white" style="left:23%;top:62%"><span></span></div><div class="ball" style="left:43%;top:38%"><span>1</span></div><div class="ball blue" style="left:55%;top:53%"><span>2</span></div><div class="ball red" style="left:68%;top:34%"><span>3</span></div><div class="ball black" style="left:73%;top:62%"><span>8</span></div></div></div>
+ </div><div class="intro-bottom">A billiards lounge for easy evenings and good company</div>
+</section>
+<section id="auth" class="hidden">
+ <div class="auth-visual"><div class="auth-brand">CUE <span style="color:var(--gold)">LOUNGE</span></div><div><div class="eyebrow">Your table is waiting</div><h2>Make yourself<br>at <em>home.</em></h2><p>Save your details, choose your favourite table, and plan your next visit. Whether it’s a quick game or a long evening, we’ll help you get started.</p></div><div class="small bottom-copy">PLAY · RELAX · REPEAT</div></div>
+ <div style="display:flex;align-items:center;justify-content:center;padding:20px 0"><div class="auth-box"><button class="text-button" onclick="backToIntro()" style="font:11px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase">← Back to welcome</button><div class="eyebrow" style="margin-top:30px">Customer account</div><h2 id="auth-heading">Welcome back.</h2><p id="auth-sub" class="small">Sign in to continue to Cue Lounge.</p><div class="auth-tabs"><button id="login-tab" class="active" onclick="setAuthMode('login')">Log in</button><button id="signup-tab" onclick="setAuthMode('signup')">Create account</button></div>
+ <form id="auth-form" onsubmit="handleAuth(event)"><div class="field hidden" id="name-field"><label for="auth-name">Full name</label><input id="auth-name" autocomplete="name" placeholder="Your name"></div><div class="field"><label for="auth-email">Email address</label><input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" required></div><div class="field"><label for="auth-password">Password</label><input id="auth-password" type="password" minlength="6" autocomplete="current-password" placeholder="At least 6 characters" required></div><div class="field hidden" id="confirm-field"><label for="auth-confirm">Confirm password</label><input id="auth-confirm" type="password" minlength="6" placeholder="Enter password again"></div><button class="btn full" id="auth-submit" type="submit">Log in and continue ↗</button><div id="auth-error" class="auth-error" role="status"></div></form><div class="auth-note">Create an account or log in using the connected secure account service. Use an email address you can access if email verification is enabled.</div></div></div>
+</section>
+<div id="site" class="hidden">
+<header class="topbar"><div><div class="brand">CUE <span style="color:var(--gold)">LOUNGE</span></div><div class="tagline">Play · Relax · Repeat</div></div><nav class="nav" aria-label="Main navigation"><button id="nav-home" class="active" onclick="showPage('home')">Home</button><button id="nav-reservations" onclick="showPage('reservations')">Reservations</button><button id="nav-venue" onclick="showPage('venue')">Our Venue</button><button class="nav-cta" onclick="logout()">Log out</button></nav></header>
+<main class="container">
+<section id="page-home" class="page active">
+ <div class="hero"><div><div class="eyebrow">Your next favourite hangout</div><h1>Your table.<br><em>Your moment.</em></h1><p>Take a break from the rush. Bring your friends, line up your shot, and settle into an atmosphere made for good games and easy company. From a casual match to a friendly challenge, there’s room for everyone at Cue Lounge.</p><div class="intro-actions"><button class="btn" onclick="showPage('reservations')">Find your table ↗</button><button class="btn outline" onclick="showPage('venue')">Explore the venue</button></div></div><div class="hero-art"><div class="pool-table"><i class="pocket a"></i><i class="pocket b"></i><i class="pocket c"></i><i class="pocket d"></i><i class="pocket e"></i><i class="pocket f"></i><div class="ball" style="left:25%;top:28%"><span>1</span></div><div class="ball blue" style="left:45%;top:48%"><span>2</span></div><div class="ball red" style="left:65%;top:35%"><span>3</span></div><div class="ball black" style="left:72%;top:58%"><span>8</span></div><div class="ball white" style="left:35%;top:62%"><span></span></div></div></div></div>
+ <div class="section"><div class="section-title"><div><div class="eyebrow">A place for every kind of player</div><h2>Make a night of it.</h2></div><p>Come for the game, stay for the atmosphere. We keep the experience straightforward, comfortable, and welcoming.</p></div><div class="features"><article class="feature"><div class="num">01 / THE TABLES</div><h3>Find your spot</h3><p>Browse twenty named tables and pick the one that feels right for your group.</p></article><article class="feature"><div class="num">02 / YOUR TIME</div><h3>Book at your pace</h3><p>Choose a date, starting time, duration, and number of players in one simple flow.</p></article><article class="feature"><div class="num">03 / EASY ARRIVAL</div><h3>Come as you are</h3><p>Friendly games, casual catch-ups, and a little room to unwind after a busy day.</p></article></div></div>
+ <div class="section"><div class="section-title"><div><div class="eyebrow">Twenty tables. One good time.</div><h2>Choose your corner.</h2></div><button class="btn outline" onclick="showPage('reservations')">See all tables ↗</button></div><div id="home-tables" class="table-strip"></div></div>
+</section>
+<section id="page-reservations" class="page">
+ <div class="section" style="padding-top:55px"><div class="eyebrow">Plan your visit</div><div class="section-title"><div><h2>Reservations</h2><p>Tell us when you’re coming, choose your table, and review the details before you continue.</p></div></div><div class="rule"></div>
+ <div class="panel"><div class="eyebrow">01 / Your booking details</div><div class="form-grid"><div class="field"><label for="customer">Full name</label><input id="customer" placeholder="Name for the reservation" autocomplete="name"></div><div class="field"><label for="contact">Contact number</label><input id="contact" type="tel" placeholder="09XX XXX XXXX" autocomplete="tel"></div><div class="field"><label for="date">Date</label><input id="date" type="date"></div><div class="field"><label for="start">Start time</label><select id="start"><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option></select></div><div class="field"><label for="duration">Duration</label><select id="duration"><option value="1">1 hour</option><option value="2">2 hours</option><option value="3">3 hours</option><option value="4">4 hours</option></select></div><div class="field"><label for="players">Number of players</label><select id="players"><option>2 players</option><option>3 players</option><option>4 players</option><option>5+ players</option></select></div><div class="field"><label for="notes">Special request (optional)</label><input id="notes" placeholder="Anything we should know?"></div></div></div>
+ <div class="panel"><div class="eyebrow">02 / Select a table</div><div class="section-title"><div><h2 style="font-size:29px">Pick your playing field.</h2><p>Swipe horizontally to browse all twenty tables. Table availability is checked against saved reservations before your request is submitted.</p></div><div id="chosen-label" class="eyebrow">No table selected</div></div><div id="booking-tables" class="table-strip"></div></div>
+ <div class="panel"><div class="eyebrow">03 / Payment preference</div><h2 style="font-size:29px;font-weight:normal;margin:12px 0">How would you like to pay?</h2><p class="small">Choose a preferred payment method for this demo. No money will be collected here.</p><div class="payment-options"><button class="payment-option active" data-pay="GCash" onclick="choosePayment('GCash')"><span class="paymark">GCash</span><strong>GCash</strong><span>Mobile wallet payment</span></button><button class="payment-option" data-pay="Maya" onclick="choosePayment('Maya')"><span class="paymark">MAYA</span><strong>Maya</strong><span>Wallet or supported card</span></button><button class="payment-option" data-pay="PayPal" onclick="choosePayment('PayPal')"><span class="paymark">PayPal</span><strong>PayPal</strong><span>Online payment account</span></button></div><div class="notice"><strong>Payment integration is not active.</strong> GCash, Maya (formerly PayMaya), and PayPal are shown as payment preferences only. Real payments require a merchant account, provider-approved checkout/API integration, server-side verification, and a secure backend. Never collect wallet PINs, OTPs, or card details in this prototype.</div></div>
+ <div class="panel"><div class="eyebrow">04 / Review your reservation</div><h2 style="font-size:29px;font-weight:normal;margin:12px 0">Your visit at a glance</h2><div class="summary"><span>Customer</span><strong id="sum-name">Not entered</strong></div><div class="summary"><span>Table</span><strong id="sum-table">Not selected</strong></div><div class="summary"><span>Date and time</span><strong id="sum-date">Not selected</strong></div><div class="summary"><span>Duration</span><strong id="sum-duration">1 hour</strong></div><div class="summary"><span>Players</span><strong id="sum-players">2 players</strong></div><div class="summary"><span>Payment preference</span><strong id="sum-payment">GCash</strong></div><div class="notice">The ₱40 deposit is a proposed policy placeholder, not a charge. Final rates, deposit rules, table availability, and confirmation must be configured by the venue.</div><button class="btn" onclick="reviewBooking()">Review booking ↗</button><div id="booking-status" class="status" role="status"></div></div>
+ </div>
+</section>
+<section id="page-venue" class="page">
+ <div class="section" style="padding-top:55px"><div class="eyebrow">A little more about us</div><div class="section-title"><div><h2>Our Venue</h2><p>A relaxed billiards lounge built around the simple pleasure of a good game and good company.</p></div></div><div class="rule"></div><div class="venue-grid"><div class="venue-photo" role="img" aria-label="Billiards lounge atmosphere"></div><div><div class="eyebrow">The Cue Lounge feeling</div><h2 style="font-size:37px;font-weight:normal;line-height:1.05">Classic character.<br><span style="color:var(--gold)">Comfortable energy.</span></h2><p style="font:14px/1.9 Arial,sans-serif;color:#c4d0c4">We imagine a space where the game takes centre stage: rich green felt, warm light, wood details, and enough breathing room to enjoy your time. Whether you’re practising your aim or sharing a laugh between turns, you’re welcome here.</p><p style="font:14px/1.9 Arial,sans-serif;color:#c4d0c4">The information on this page is a design concept. Add your confirmed address, opening hours, house rules, actual rates, and venue photographs before publishing the site.</p><button class="btn" onclick="showPage('reservations')">Plan a visit ↗</button></div></div><div class="detail-list"><div class="detail"><strong>20 planned tables</strong><span>Each table has its own name for easy selection.</span></div><div class="detail"><strong>Relaxed atmosphere</strong><span>A welcoming concept for casual games and friendly matches.</span></div><div class="detail"><strong>Flexible sessions</strong><span>Choose from one to four hours in the booking prototype.</span></div><div class="detail"><strong>Payment options planned</strong><span>GCash, Maya, and PayPal can be integrated after merchant setup.</span></div></div><div class="section"><div class="eyebrow">Our table collection</div><h2 style="font-size:34px;font-weight:normal">Meet the tables.</h2><div id="venue-tables" class="table-strip"></div></div></div>
+</section>
+<section class="section container" id="database-setup"><div class="eyebrow">For the site owner</div><h2 style="font-size:30px;font-weight:normal">Database connection</h2><p class="small">This website uses Supabase for secure customer accounts and saved reservations. Before publishing, enter your Supabase project URL and anon/public key in the configuration at the top of the JavaScript, then run the supplied SQL setup script in Supabase. Never put a service-role key or database password in this file.</p></section></main><footer class="footer">CUE LOUNGE · PLAY · RELAX · REPEAT<br>CUSTOMER ACCOUNTS AND RESERVATION REQUESTS USE SUPABASE · PAYMENTS ARE NOT LIVE</footer>
+</div>
+<div id="review-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="review-title"><div class="modal"><button class="close" onclick="closeReview()" aria-label="Close">✕</button><div class="eyebrow">Booking preview</div><h2 id="review-title">One last look.</h2><p id="review-copy" class="small"></p><div class="notice">Submitting creates a reservation request in the database if the selected table is available. This demo does not process payments; the venue must confirm the request.</div><button class="btn full" onclick="closeReview()">Got it</button></div></div>
+<script>
+/*
+  CUE LOUNGE BACKEND SETUP
+  1. Create a project at https://supabase.com
+  2. In Project Settings > API, copy the Project URL and anon/public key.
+  3. Paste them below. Never use the service_role key in a browser website.
+  4. Run Cue_Lounge_supabase_setup.sql in Supabase SQL Editor.
+*/
+const SUPABASE_URL = 'https://lzqojapvbyezzopxxlro.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_9Oe8LImyKrVo5tUlv1Psnw_iEuqvfBI';
+const supabaseConfigured =
+  SUPABASE_URL.startsWith('https://') &&
+  !SUPABASE_URL.includes('PASTE_YOUR') &&
+  SUPABASE_ANON_KEY.length > 30 &&
+  !SUPABASE_ANON_KEY.includes('PASTE_YOUR');
+const supabaseClient = (supabaseConfigured && window.supabase)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+const tableNames=['Uno','Dos','Tres','Cuatro','Cinco','Seis','Siete','Ocho','Nueve','Diez','Once','Doce','Trece','Catorce','Quince','Dieciséis','Diecisiete','Dieciocho','Diecinueve','Veinte'];
+const photos=[
+'https://www.thailandpooltables.com/en/blog/designer-luxury-pool-tables-thailand.html?srsltid=AYCX9vLT4e9AJpnZmuiPiEHjk-uETNYuGZlzRJNjGwCizesxmfDb9PZO',
+'https://www.thailandpooltables.com/en/blog/designer-luxury-pool-tables-thailand.html?srsltid=AYCX9vLT4e9AJpnZmuiPiEHjk-uETNYuGZlzRJNjGwCizesxmfDb9PZO',
+'https://www.thailandpooltables.com/en/blog/designer-luxury-pool-tables-thailand.html?srsltid=AYCX9vLT4e9AJpnZmuiPiEHjk-uETNYuGZlzRJNjGwCizesxmfDb9PZO',
+'https://www.thailandpooltables.com/en/blog/designer-luxury-pool-tables-thailand.html?srsltid=AYCX9vLT4e9AJpnZmuiPiEHjk-uETNYuGZlzRJNjGwCizesxmfDb9PZO',
+'https://www.thailandpooltables.com/en/blog/designer-luxury-pool-tables-thailand.html?srsltid=AYCX9vLT4e9AJpnZmuiPiEHjk-uETNYuGZlzRJNjGwCizesxmfDb9PZO'
+];
+let authMode='login',selectedTable=null,payment='GCash',userName='Guest',currentUser=null;
+
+function showAuth(mode){
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('auth').classList.remove('hidden');
+  document.getElementById('site').classList.add('hidden');
+  setAuthMode(mode);
+  if(!supabaseClient) document.getElementById('auth-error').textContent='Database not configured yet. Add your Supabase URL and anon/public key in the JavaScript setup section.';
+  window.scrollTo(0,0);
+}
+function backToIntro(){document.getElementById('auth').classList.add('hidden');document.getElementById('intro').classList.remove('hidden');window.scrollTo(0,0)}
+function setAuthMode(mode){
+  authMode=mode;
+  document.getElementById('login-tab').classList.toggle('active',mode==='login');
+  document.getElementById('signup-tab').classList.toggle('active',mode==='signup');
+  document.getElementById('name-field').classList.toggle('hidden',mode!=='signup');
+  document.getElementById('confirm-field').classList.toggle('hidden',mode!=='signup');
+  document.getElementById('auth-name').required=mode==='signup';
+  document.getElementById('auth-confirm').required=mode==='signup';
+  document.getElementById('auth-heading').textContent=mode==='login'?'Welcome back.':'Make it official.';
+  document.getElementById('auth-sub').textContent=mode==='login'?'Sign in to continue to Cue Lounge.':'Create your Cue Lounge customer account.';
+  document.getElementById('auth-submit').textContent=mode==='login'?'Log in and continue ↗':'Create account ↗';
+  document.getElementById('auth-error').textContent='';
+  document.getElementById('auth-password').autocomplete=mode==='login'?'current-password':'new-password';
+}
+async function handleAuth(e){
+  e.preventDefault();
+  const email=document.getElementById('auth-email').value.trim();
+  const pass=document.getElementById('auth-password').value;
+  const error=document.getElementById('auth-error');
+  const submit=document.getElementById('auth-submit');
+  if(!supabaseClient){error.textContent='Database not configured. Add your Supabase URL and anon/public key first.';return}
+  submit.disabled=true;submit.textContent='Please wait…';error.textContent='';
+  try{
+    if(authMode==='signup'){
+      const name=document.getElementById('auth-name').value.trim();
+      const confirm=document.getElementById('auth-confirm').value;
+      if(!name){error.textContent='Please enter your name.';return}
+      if(pass!==confirm){error.textContent='Your passwords do not match.';return}
+      const {data,error:signUpError}=await supabaseClient.auth.signUp({
+        email,password:pass,options:{data:{full_name:name}}
+      });
+      if(signUpError) throw signUpError;
+      if(data.session){
+        currentUser=data.user;userName=name;enterSite();
+      }else{
+        error.textContent='Account created. Check your email to verify it, then log in.';
+      }
+    }else{
+      const {data,error:loginError}=await supabaseClient.auth.signInWithPassword({email,password:pass});
+      if(loginError) throw loginError;
+      currentUser=data.user;
+      userName=data.user.user_metadata?.full_name || email.split('@')[0] || 'Guest';
+      enterSite();
+    }
+  }catch(err){
+    error.textContent=err.message || 'Unable to authenticate. Please check your details and try again.';
+  }finally{
+    submit.disabled=false;
+    submit.textContent=authMode==='login'?'Log in and continue ↗':'Create account ↗';
+  }
+}
+function enterSite(){
+  document.getElementById('auth').classList.add('hidden');
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('site').classList.remove('hidden');
+  document.getElementById('customer').value=userName==='Guest'?'':userName;
+  updateSummary();showPage('home');window.scrollTo(0,0);
+}
+async function logout(){
+  if(supabaseClient) await supabaseClient.auth.signOut();
+  currentUser=null;userName='Guest';
+  document.getElementById('site').classList.add('hidden');showAuth('login');
+}
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav button[id^="nav-"]').forEach(b=>b.classList.toggle('active',b.id==='nav-'+page));
+  window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});updateSummary();
+}
+function buildTables(targetId){
+  const root=document.getElementById(targetId);
+  tableNames.forEach((name,i)=>{
+    const card=document.createElement('article');
+    card.className='table-card';card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label','Select Table '+name);
+    card.innerHTML=`<div class="table-photo" style="background-image:linear-gradient(0deg,#08130f22,#08130f00),url('${photos[i%photos.length]}')"></div><div class="table-card-body"><div class="eyebrow">Cue Lounge · ${String(i+1).padStart(2,'0')}</div><div class="name">Table ${name}</div><div class="meta"><span>Pool table</span><span>Reservation</span></div><div class="pick">Select this table ↗</div></div>`;
+    const choose=()=>{
+      selectedTable=i+1;
+      document.querySelectorAll('.table-card').forEach(c=>c.classList.toggle('selected',c.dataset.table===String(selectedTable)));
+      document.getElementById('chosen-label').textContent='TABLE '+name.toUpperCase();
+      updateSummary();showPage('reservations');
+    };
+    card.addEventListener('click',choose);
+    card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose()}});
+    card.dataset.table=String(i+1);root.appendChild(card);
+  });
+}
+function choosePayment(method){payment=method;document.querySelectorAll('.payment-option').forEach(b=>b.classList.toggle('active',b.dataset.pay===method));updateSummary()}
+function updateSummary(){
+  const val=id=>document.getElementById(id);if(!val('sum-name'))return;
+  val('sum-name').textContent=val('customer').value.trim()||'Not entered';
+  val('sum-table').textContent=selectedTable?'Table '+tableNames[selectedTable-1]:'Not selected';
+  val('sum-date').textContent=(val('date').value||'Not selected')+' · '+val('start').selectedOptions[0].text;
+  val('sum-duration').textContent=val('duration').value+' hour(s)';
+  val('sum-players').textContent=val('players').value;
+  val('sum-payment').textContent=payment;
+}
+function toMinutes(hhmm){const [h,m]=hhmm.split(':').map(Number);return h*60+m}
+async function reviewBooking(){
+  const name=document.getElementById('customer').value.trim();
+  const contact=document.getElementById('contact').value.trim();
+  const date=document.getElementById('date').value;
+  const start=document.getElementById('start').value;
+  const duration=Number(document.getElementById('duration').value);
+  const players=document.getElementById('players').value;
+  const notes=document.getElementById('notes').value.trim();
+  const status=document.getElementById('booking-status');
+  if(!name||!contact||!date||!selectedTable){
+    status.className='status error';status.textContent='Please enter your name, contact number, date, and select a table before submitting.';return;
+  }
+  if(!supabaseClient||!currentUser){
+    status.className='status error';status.textContent='Please configure the database and log in before submitting a reservation.';return;
+  }
+  if(date<new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10)){
+    status.className='status error';status.textContent='Please choose today or a future date.';return;
+  }
+  const startMinutes=toMinutes(start),endMinutes=startMinutes+duration*60;
+  if(endMinutes>24*60){status.className='status error';status.textContent='This reservation would end after midnight. Choose an earlier start time.';return}
+  status.className='status';status.textContent='Checking table availability…';
+  try{
+    // The database function checks conflicts and inserts atomically, without exposing other customers' details.
+    const {data,error:saveError}=await supabaseClient.rpc('create_reservation',{
+      p_customer_name:name,p_contact_number:contact,p_reservation_date:date,
+      p_start_time:start,p_duration_hours:duration,p_players:players,
+      p_special_request:notes||null,p_table_number:selectedTable,p_payment_preference:payment
+    });
+    if(saveError) throw saveError;
+    const reservationId=data;
+    document.getElementById('review-copy').textContent=`Thank you, ${name}. Your request for Table ${tableNames[selectedTable-1]} on ${date} at ${document.getElementById('start').selectedOptions[0].text}, for ${duration} hour(s), ${players}, has been saved. Reference: ${reservationId}. Preferred payment: ${payment}. The venue still needs to confirm your request. No payment was collected.`;
+    document.getElementById('review-modal').classList.remove('hidden');
+    status.className='status';status.textContent='Reservation request saved successfully. It is pending venue confirmation.';
+  }catch(err){
+    status.className='status error';
+    status.textContent=(err.message||'Could not save your reservation.')+' Please check your connection or database setup and try again.';
+  }
+}
+function closeReview(){document.getElementById('review-modal').classList.add('hidden')}
+buildTables('home-tables');buildTables('booking-tables');buildTables('venue-tables');
+const dateInput=document.getElementById('date');const now=new Date();
+dateInput.min=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);dateInput.value=dateInput.min;
+['customer','date','start','duration','players'].forEach(id=>document.getElementById(id).addEventListener('change',updateSummary));
+document.getElementById('customer').addEventListener('input',updateSummary);
+document.getElementById('review-modal').addEventListener('click',e=>{if(e.target.id==='review-modal')closeReview()});
+
+// Restore an existing signed-in session when the page is reopened.
+if(supabaseClient){
+  supabaseClient.auth.getSession().then(({data})=>{
+    if(data.session){
+      currentUser=data.session.user;
+      userName=currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'Guest';
+      enterSite();
+    }
+  });
+}
+</script>
+</body>
+</html>
