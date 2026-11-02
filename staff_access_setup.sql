@@ -1,7 +1,4 @@
--- CUE LOUNGE STAFF ACCESS (STAFF + ADMIN SHARE ONE ROLE)
--- Run in Supabase SQL Editor AFTER existing Cue Lounge tables exist.
--- Create each staff account through the website first. Copy its UUID from
--- Supabase > Authentication > Users, then run the INSERT at the bottom.
+
 
 create table if not exists public.staff_members (
   user_id uuid primary key references auth.users(id) on delete cascade,
@@ -26,5 +23,3 @@ with check (exists (select 1 from public.staff_members sm where sm.user_id=(sele
 revoke update on public.reservations from authenticated;
 grant update (status) on public.reservations to authenticated;
 
--- Replace with the real UUID from Authentication > Users, then uncomment:
--- insert into public.staff_members (user_id) values ('PASTE-STAFF-USER-UUID-HERE');
